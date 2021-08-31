@@ -6,9 +6,26 @@ Handy if you want automate the (de-)activation of cameras or WLAN Access Points.
 
 ## Usage
 
-`python3 poe_switch.py udm.example.org IamAdmin P4ssword fcec12345678 6,7 auto`
+```
+usage: poe_switch.py [-h] [-v] controller username password mac ports state
 
-will turn on the PoE (in mode `auto`) for ports 6 and 7 of the UniFi PoE switch with MAC address fc:ec:12:34:56:78.
+Change the PoE Mode of UniFi switches controlled by a UDM (Pro).
+
+positional arguments:
+  controller     hostname or IP address of UniFi Controller
+  username       username with admin rights on UniFi Controller
+  password       corresponding password for admin user
+  mac            MAC address (with or without colons) of switch
+  ports          port numbers to acquire new state (list separated by comma,
+                 e.g., '5,6,7')
+  state          desired state of PoE ports, e.g., 'auto' or 'off'
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --verbose  increase output verbosity
+```
+
+`python3 poe_switch.py udm.example.org IamAdmin P4ssword fcec12345678 6,7 auto` will turn on the PoE (in mode `auto`) for ports 6 and 7 of the UniFi PoE switch with MAC address fc:ec:12:34:56:78.
 
 ## Tested on
 Firmware 1.10.0, Network 6.2.26
