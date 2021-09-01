@@ -27,5 +27,14 @@ optional arguments:
 
 `python3 poe_switch.py udm.example.org IamAdmin P4ssword fcec12345678 6,7 auto` will turn on the PoE (in mode `auto`) for ports 6 and 7 of the UniFi PoE switch with MAC address fc:ec:12:34:56:78.
 
+## Main challenge
+Getting the authentication right: `TOKEN`from a cookie plus a `X-CSRF-Token`from the header
+
 ## Tested on
 Firmware 1.10.0, Network 6.2.26
+
+## References
+Thanks for the inspiration and potential sources for other people who want to go down this rabbit hole:
+* [Ubiquity Community Wiki - partial API description](https://ubntwiki.com/products/software/unifi-controller/api)
+* [Previous work in the Home Assistant community](https://community.home-assistant.io/t/unifi-allow-poe-switching-of-connected-unifi-devices/230358)
+* [Art of WiFi - UniFi API Client (in PHP)](https://github.com/Art-of-WiFi/UniFi-API-client)
