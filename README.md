@@ -31,7 +31,8 @@ optional arguments:
 Getting the authentication right: `TOKEN`from a cookie plus a `X-CSRF-Token`from the header
 
 ## Tested on
-Firmware 1.10.0, Network 6.2.26
+Firmware 1.10.0, 1.12.22
+Network 6.2.26, 7.2.92
 
 ## References
 Thanks for the inspiration and potential sources for other people who want to go down this rabbit hole:
