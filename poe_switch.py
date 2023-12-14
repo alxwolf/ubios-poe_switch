@@ -44,8 +44,11 @@ logging.basicConfig(level=loglevel, format='%(asctime)s - %(levelname)s - %(mess
 
 def logout():
     logging.info("Logging out via %s.", logout_endpoint)
+    # UniFi OS versions before 3.2.7
     logout = s.post(logout_endpoint, headers = {'x-csrf-token': login.headers['X-CSRF-Token']}, verify = False, timeout = 1)
-
+    # Unifi OS versions from 3.2.7
+    # logout = s.post(logout_endpoint, headers = {'x-csrf-token': login.headers['X-Csrf-Token']}, verify = False, timeout = 1)
+    
     if (logout.status_code == 200):
         logging.debug("Success.")
         sys.exit()
@@ -78,7 +81,10 @@ if (login.status_code == 200):
     logging.debug("Success. Cookies received:")
     for c in cookies:
         logging.debug("%s ==> %s", c.name, c.value)
+    # UniFi OS versions before 3.2.7
     logging.debug("X-CSRF-Token: %s", login.headers['X-CSRF-Token'])
+    # UniFi OS versions from 3.2.7
+    # logging.debug("X-CSRF-Token: %s", login.headers['X-Csrf-Token'])
 
 else:
     logging.debug("Login failed with return code %s", login.status_code)
@@ -120,11 +126,19 @@ logging.info("Trying to update port overrides on %s", set_device_settings_endpoi
 
 logging.debug("%s", json.dumps(new_port_overrides))
 
+# UniFi OS versions before 3.2.7
 headers = {
     "Accept": "application/json",
     "Content-Type": "application/json; charset=utf-8",
     "x-csrf-token": login.headers['X-CSRF-Token']
 }
+
+# UniFi OS versions from 3.2.7
+#headers = {
+#    "Accept": "application/json",
+#    "Content-Type": "application/json; charset=utf-8",
+#    "x-csrf-token": login.headers['X-Csrf-Token']
+#}
 
 update = s.put(set_device_settings_endpoint, headers = headers, data = json.dumps(new_port_overrides), verify = False, timeout = 1)
 
